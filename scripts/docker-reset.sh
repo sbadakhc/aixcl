@@ -13,10 +13,10 @@ print_message() {
     local message="$1"
     local color="$2"
     case $color in
-        "green") echo -e "\e[32m$message\e[0m" ;;
-        "red") echo -e "\e[31m$message\e[0m" ;;
-        "yellow") echo -e "\e[33m$message\e[0m" ;;
-        "blue") echo -e "\e[34m$message\e[0m" ;;
+        "green") echo -e "\e[32m$message\e[0m" ;; 
+        "red") echo -e "\e[31m$message\e[0m" ;; 
+        "yellow") echo -e "\e[33m$message\e[0m" ;; 
+        "blue") echo -e "\e[34m$message\e[0m" ;; 
         *) echo "$message" ;;
     esac
 }
@@ -44,7 +44,7 @@ if [ "$confirm" != "DELETE EVERYTHING" ]; then
 fi
 
 # Get script directory to find services
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+SCRIPT_DIR="$(cd "$(dirname \"${BASH_SOURCE[0]}\")/.." && pwd)"
 SERVICES_DIR="${SCRIPT_DIR}/services"
 
 # Function to bring down Docker Compose stack gracefully
@@ -82,7 +82,8 @@ bring_down_stack() {
 # Function to delete all Docker containers
 delete_containers() {
     print_message "Deleting all Docker containers..." "yellow"
-    local containers=$(docker ps -aq 2>/dev/null)
+    local containers
+    containers=$(docker ps -aq 2>/dev/null)
     if [ -n "$containers" ]; then
         echo "$containers" | xargs -r docker stop 2>/dev/null || true
         echo "$containers" | xargs -r docker rm -f 2>/dev/null || true
@@ -95,7 +96,8 @@ delete_containers() {
 # Function to delete all Docker images
 delete_images() {
     print_message "Deleting all Docker images..." "yellow"
-    local images=$(docker images -q 2>/dev/null)
+    local images
+    images=$(docker images -q 2>/dev/null)
     if [ -n "$images" ]; then
         echo "$images" | xargs -r docker rmi -f 2>/dev/null || true
         print_message "  ✅ Removed all images" "green"
@@ -108,7 +110,8 @@ delete_images() {
 delete_networks() {
     print_message "Deleting all user-defined Docker networks..." "yellow"
     # Get all networks except default ones (bridge, host, none)
-    local networks=$(docker network ls -q --filter "type=custom" 2>/dev/null)
+    local networks
+    networks=$(docker network ls -q --filter "type=custom" 2>/dev/null)
     if [ -n "$networks" ]; then
         echo "$networks" | xargs -r docker network rm 2>/dev/null || true
         print_message "  ✅ Removed user-defined networks" "green"
@@ -122,7 +125,8 @@ delete_volumes() {
     print_message "Deleting all Docker volumes..." "yellow"
     
     # First, ensure all containers are stopped and removed
-    local containers=$(docker ps -aq 2>/dev/null)
+    local containers
+    containers=$(docker ps -aq 2>/dev/null)
     if [ -n "$containers" ]; then
         print_message "  Stopping containers to release volume locks..." "blue"
         echo "$containers" | xargs -r docker stop 2>/dev/null || true
@@ -130,7 +134,8 @@ delete_volumes() {
     fi
     
     # Remove all volumes
-    local volumes=$(docker volume ls -q 2>/dev/null)
+    local volumes
+    volumes=$(docker volume ls -q 2>/dev/null)
     if [ -n "$volumes" ]; then
         print_message "  Removing volumes..." "blue"
         echo "$volumes" | xargs -r docker volume rm -f 2>/dev/null || true
@@ -155,13 +160,10 @@ echo ""
 
 delete_containers
 echo ""
-
 delete_networks
 echo ""
-
 delete_volumes
 echo ""
-
 delete_images
 echo ""
 
@@ -185,7 +187,7 @@ if [ -z "$images_remaining" ]; then
 else
     print_message "⚠️  Docker images still exist:" "red"
     docker images --format "  - {{.Repository}}:{{.Tag}}" 2>/dev/null | head -10 || true
-    local count=$(docker images -q | wc -l)
+    count=$(docker images -q | wc -l)
     if [ "$count" -gt 10 ]; then
         print_message "  ... and $((count - 10)) more" "yellow"
     fi
