@@ -41,20 +41,44 @@ else
     exit 1
 fi
 
-# Check if special characters survive JSON round-trip
-# This is the correct security test: can malicious payloads be serialized to JSON
-# and deserialized back to their exact original values?
-parsed_email=$(python3 -c "import json, sys; print(json.loads(sys.argv[1])['email'])" "$PAYLOAD")
-parsed_password=$(python3 -c "import json, sys; print(json.loads(sys.argv[1])['password'])" "$PAYLOAD")
+# Check if injection characters are properly escaped in JSON
+# Use Python to parse and verify the values are correctly preserved
+VERIFY_RESULT=$(python3 << 'PYEOF'
+import json
+import sys
+import os
 
-if [ "$parsed_email" = 'admin@example.com"}' ] && [ "$parsed_password" = 'password" --payload "injection' ]; then
-    echo -e "${GREEN}PASS: Special characters preserved through JSON round-trip${NC}"
+payload_str = os.environ.get('PAYLOAD')
+try:
+    obj = json.loads(payload_str)
+    email = obj.get('email', '')
+    password = obj.get('password', '')
+    
+    # Verify the original values were preserved correctly
+    expected_email = 'admin@example.com"}'
+    expected_password = 'password" --payload "injection'
+    
+    if email == expected_email and password == expected_password:
+        print("0")
+        sys.exit(0)
+    else:
+        print(f"Email mismatch: got '{email}', expected '{expected_email}'")
+        print(f"Password mismatch: got '{password}', expected '{expected_password}'")
+        sys.exit(1)
+except Exception as e:
+    print(f"JSON parsing error: {e}")
+    sys.exit(1)
+PYEOF
+)
+
+VERIFY_EXIT=$?
+
+if [ $VERIFY_EXIT -eq 0 ]; then
+    echo -e "${GREEN}PASS: Special characters properly escaped${NC}"
 else
-    echo -e "${RED}FAIL: Values corrupted during JSON generation${NC}"
-    echo "  Expected email:    admin@example.com\"}"
-    echo "  Got email:         $parsed_email"
-    echo "  Expected password: password\" --payload \"injection"
-    echo "  Got password:      $parsed_password"
+    echo -e "${RED}FAIL: Special characters not properly handled${NC}"
+    echo "Debug output: $VERIFY_RESULT"
+    echo "Payload: $PAYLOAD"
     exit 1
 fi
 
