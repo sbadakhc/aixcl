@@ -30,6 +30,7 @@ generate_json_python() {
 }
 
 PAYLOAD=$(generate_json_python)
+export PAYLOAD
 echo "Generated Payload (Escaping Test): $PAYLOAD"
 
 # Validate using python's json.loads ensure it's valid JSON
@@ -46,7 +47,7 @@ fi
 parsed_email=$(python3 -c "import json, sys; print(json.loads(sys.argv[1])['email'])" "$PAYLOAD")
 parsed_password=$(python3 -c "import json, sys; print(json.loads(sys.argv[1])['password'])" "$PAYLOAD")
 
-if [ "$parsed_email" = "admin@example.com\"}" ] && [ "$parsed_password" = 'password" --payload "injection' ]; then
+if [ "$parsed_email" = 'admin@example.com"}' ] && [ "$parsed_password" = 'password" --payload "injection' ]; then
     echo -e "${GREEN}PASS: Special characters preserved through JSON round-trip${NC}"
 else
     echo -e "${RED}FAIL: Values corrupted during JSON generation${NC}"
