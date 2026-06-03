@@ -170,8 +170,8 @@ $DC up -d \
 
 log "Waiting for postgres-password to appear in vault-secrets volume (up to 120s)..."
 for i in $(seq 1 60); do
-    PW=$(docker run --rm -v aixcl-vault-secrets:/s busybox \
-        cat /s/postgres-password 2>/dev/null || true)
+    PW=$(docker exec vault-agent-postgres-bootstrap \
+        cat /run/secrets/postgres-password 2>/dev/null || true)
     [ -n "$PW" ] && { log "Bootstrap secrets are ready"; break; }
     [ "$i" -eq 60 ] && die "Timed out waiting for vault-secrets volume"
     sleep 2
