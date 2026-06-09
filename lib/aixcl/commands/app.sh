@@ -275,7 +275,7 @@ app_cmd_start() {
     fi
 
     echo ""
-    echo "Starting Application: ${app_name}"
+    echo "Starting Application: ${app_name^^}"
     echo "=============================="
     echo ""
 
@@ -391,7 +391,7 @@ app_cmd_stop() {
         return 1
     fi
 
-    echo "Stopping Application: ${app_name}"
+    echo "Stopping Application: ${app_name^^}"
     local svc_count
     svc_count="$(_app_service_count)"
     if [ "$svc_count" -eq 0 ]; then
@@ -528,7 +528,7 @@ app_cmd_build() {
         return 1
     fi
 
-    echo "Building application: ${app_name}"
+    echo "Building application: ${app_name^^}"
     local svc_count
     svc_count="$(_app_service_count)"
     local built=0
@@ -582,7 +582,7 @@ app_cmd_remove() {
     fi
 
     echo ""
-    echo "Removing Application: ${app_name}"
+    echo "Removing Application: ${app_name^^}"
     echo "========================"
     echo ""
 
@@ -647,7 +647,8 @@ app_cmd_remove() {
     fi
 
     # 4. Remove Grafana dashboard files if present
-    local grafana_dash="${SCRIPT_DIR}/grafana/provisioning/dashboards/apps/${app_name}"
+    local display_name=$(echo "$app_name" | tr '[:lower:]' '[:upper:]')
+    local grafana_dash="${SCRIPT_DIR}/grafana/provisioning/dashboards/apps/${display_name}"
     if [ -d "$grafana_dash" ]; then
         rm -rf "$grafana_dash"
     fi
@@ -1005,7 +1006,9 @@ EOF
 _app_wire_grafana() {
     local app_name="${1:-}"
     local app_dir="${SCRIPT_DIR}/apps/${app_name}"
-    local platform_dash="${SCRIPT_DIR}/grafana/provisioning/dashboards/apps/${app_name}"
+    # Use uppercase app name for Grafana folder display (e.g., ftso -> FTSO)
+    local display_name=$(echo "$app_name" | tr '[:lower:]' '[:upper:]')
+    local platform_dash="${SCRIPT_DIR}/grafana/provisioning/dashboards/apps/${display_name}"
 
     if [ -d "${app_dir}/grafana/dashboards" ]; then
         # Copy dashboard JSON files into dedicated apps/ subdirectory
