@@ -48,7 +48,7 @@
     {
       "id": 1,
       "type": "stat",
-      "title": "% Pairs in Band \u2014 CoinGecko",
+      "title": "% Pairs in Band -- CoinGecko",
       "gridPos": {
         "x": 0,
         "y": 0,
@@ -98,7 +98,7 @@
     {
       "id": 2,
       "type": "stat",
-      "title": "% Pairs in Band \u2014 Binance",
+      "title": "% Pairs in Band -- Binance",
       "gridPos": {
         "x": 4,
         "y": 0,
@@ -147,7 +147,7 @@
     {
       "id": 6,
       "type": "stat",
-      "title": "% Pairs in Band \u2014 Anchor",
+      "title": "% Pairs in Band -- Anchor",
       "description": "On-chain FTSOv2 anchor = actual scoring reference. This is the metric that directly reflects your score.",
       "gridPos": {
         "x": 8,
@@ -334,7 +334,7 @@
     {
       "id": 10,
       "type": "table",
-      "title": "Live Accuracy \u2014 All Pairs",
+      "title": "Live Accuracy -- All Pairs",
       "description": "Anchor Dev% = deviation from the on-chain FTSOv2 median (your actual scoring reference). CG Dev% and Binance Dev% are external sanity checks. Green = within \u00b10.25%, Red = outside.",
       "gridPos": {
         "x": 0,
@@ -588,7 +588,7 @@
     {
       "id": 20,
       "type": "timeseries",
-      "title": "Deviation History \u2014 $pair (vs $source)",
+      "title": "Deviation History -- $pair (vs $source)",
       "gridPos": {
         "x": 0,
         "y": 18,
@@ -636,7 +636,7 @@
     {
       "id": 21,
       "type": "timeseries",
-      "title": "Price History \u2014 $pair",
+      "title": "Price History -- $pair",
       "gridPos": {
         "x": 16,
         "y": 18,
@@ -856,7 +856,7 @@
     {
       "id": 43,
       "type": "table",
-      "title": "Source Transparency \u2014 $pair",
+      "title": "Source Transparency -- $pair",
       "description": "Per-source breakdown of the provider's weighted median calculation. weight = normalized exponential-decay weight. staleness = ms since last trade. rawPrice = price before USD conversion (if applicable).",
       "gridPos": {
         "x": 0,
