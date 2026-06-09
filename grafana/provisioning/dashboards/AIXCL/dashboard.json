@@ -319,11 +319,11 @@
       "pluginVersion": "8.0.0",
       "targets": [
         {
-          "expr": "ollama_up",
+          "expr": "0",
           "refId": "A"
         }
       ],
-      "title": "Ollama",
+      "title": "Ollama (not monitored)",
       "type": "stat"
     },
     {
@@ -386,11 +386,11 @@
       "pluginVersion": "8.0.0",
       "targets": [
         {
-          "expr": "openwebui_up",
+          "expr": "0",
           "refId": "A"
         }
       ],
-      "title": "Open WebUI",
+      "title": "Open WebUI (not monitored)",
       "type": "stat"
     },
     {
