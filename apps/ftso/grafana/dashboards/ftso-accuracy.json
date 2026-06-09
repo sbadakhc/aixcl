@@ -91,9 +91,17 @@
       "targets": [
         {
           "expr": "ftso_pairs_within_primary_band_pct{source=\"coingecko\"}",
-          "legendFormat": "CoinGecko"
+          "legendFormat": "CoinGecko",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
         }
-      ]
+      ],
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      }
     },
     {
       "id": 2,
@@ -140,9 +148,17 @@
       "targets": [
         {
           "expr": "ftso_pairs_within_primary_band_pct{source=\"binance\"}",
-          "legendFormat": "Binance"
+          "legendFormat": "Binance",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
         }
-      ]
+      ],
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      }
     },
     {
       "id": 6,
@@ -190,9 +206,17 @@
       "targets": [
         {
           "expr": "ftso_pairs_within_primary_band_pct{source=\"anchor\"}",
-          "legendFormat": "Anchor"
+          "legendFormat": "Anchor",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
         }
-      ]
+      ],
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      }
     },
     {
       "id": 3,
@@ -238,9 +262,17 @@
       "targets": [
         {
           "expr": "ftso_provider_prices_total",
-          "legendFormat": "Pairs"
+          "legendFormat": "Pairs",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
         }
-      ]
+      ],
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      }
     },
     {
       "id": 4,
@@ -287,9 +319,17 @@
       "targets": [
         {
           "expr": "rate(ftso_poll_total{status=\"success\"}[5m]) / rate(ftso_poll_total[5m])",
-          "legendFormat": "Success rate"
+          "legendFormat": "Success rate",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
         }
-      ]
+      ],
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      }
     },
     {
       "id": 5,
@@ -319,17 +359,33 @@
       "targets": [
         {
           "expr": "ftso_reference_prices_total{source=\"anchor\"}",
-          "legendFormat": "Anchor"
+          "legendFormat": "Anchor",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
         },
         {
           "expr": "ftso_reference_prices_total{source=\"coingecko\"}",
-          "legendFormat": "CoinGecko"
+          "legendFormat": "CoinGecko",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
         },
         {
           "expr": "ftso_reference_prices_total{source=\"binance\"}",
-          "legendFormat": "Binance"
+          "legendFormat": "Binance",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
         }
-      ]
+      ],
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      }
     },
     {
       "id": 10,
@@ -563,27 +619,47 @@
           "expr": "ftso_price_deviation_pct{source=\"anchor\"}",
           "instant": true,
           "format": "table",
-          "refId": "anchor_dev"
+          "refId": "anchor_dev",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
         },
         {
           "expr": "ftso_price_deviation_pct{source=\"coingecko\"}",
           "instant": true,
           "format": "table",
-          "refId": "cg_dev"
+          "refId": "cg_dev",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
         },
         {
           "expr": "ftso_price_deviation_pct{source=\"binance\"}",
           "instant": true,
           "format": "table",
-          "refId": "binance_dev"
+          "refId": "binance_dev",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
         },
         {
           "expr": "ftso_provider_price",
           "instant": true,
           "format": "table",
-          "refId": "provider"
+          "refId": "provider",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
         }
-      ]
+      ],
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      }
     },
     {
       "id": 20,
@@ -629,9 +705,17 @@
       "targets": [
         {
           "expr": "ftso_price_deviation_pct{pair=\"$pair\", source=\"$source\"}",
-          "legendFormat": "deviation %"
+          "legendFormat": "deviation %",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
         }
-      ]
+      ],
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      }
     },
     {
       "id": 21,
@@ -664,21 +748,41 @@
       "targets": [
         {
           "expr": "ftso_provider_price{pair=\"$pair\"}",
-          "legendFormat": "Provider"
+          "legendFormat": "Provider",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
         },
         {
           "expr": "ftso_reference_price{pair=\"$pair\", source=\"anchor\"}",
-          "legendFormat": "Anchor (on-chain)"
+          "legendFormat": "Anchor (on-chain)",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
         },
         {
           "expr": "ftso_reference_price{pair=\"$pair\", source=\"coingecko\"}",
-          "legendFormat": "CoinGecko"
+          "legendFormat": "CoinGecko",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
         },
         {
           "expr": "ftso_reference_price{pair=\"$pair\", source=\"binance\"}",
-          "legendFormat": "Binance"
+          "legendFormat": "Binance",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
         }
-      ]
+      ],
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      }
     },
     {
       "id": 30,
@@ -729,17 +833,33 @@
       "targets": [
         {
           "expr": "ftso_pairs_within_primary_band_pct{source=\"anchor\"}",
-          "legendFormat": "Anchor (on-chain)"
+          "legendFormat": "Anchor (on-chain)",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
         },
         {
           "expr": "ftso_pairs_within_primary_band_pct{source=\"coingecko\"}",
-          "legendFormat": "CoinGecko"
+          "legendFormat": "CoinGecko",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
         },
         {
           "expr": "ftso_pairs_within_primary_band_pct{source=\"binance\"}",
-          "legendFormat": "Binance"
+          "legendFormat": "Binance",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
         }
-      ]
+      ],
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      }
     },
     {
       "id": 31,
@@ -768,9 +888,17 @@
       "targets": [
         {
           "expr": "increase(ftso_reference_fetch_errors_total[5m])",
-          "legendFormat": "{{source}} errors / 5m"
+          "legendFormat": "{{source}} errors / 5m",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
         }
-      ]
+      ],
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      }
     },
     {
       "id": 40,
@@ -787,7 +915,11 @@
         "mode": "markdown",
         "content": "## Anchor Data Source\n\nThis dashboard compares our provider prices against the **Flare FTSOv2 on-chain anchor** -- the median of all provider submissions updated every ~90 seconds.\n\n**Data source:** FtsoV2 smart contract via getFeedsById() on Flare mainnet\n**Contract:** Resolved via ContractRegistry at 0xaD67FE66660Fb8dFE9d6b1b4240d8650e30F6019\n**RPC endpoint:** https://flare-api.flare.network/ext/C/rpc\n**Anchor deviation %** is the metric used for on-chain scoring."
       },
-      "targets": []
+      "targets": [],
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      }
     },
     {
       "id": 41,
@@ -804,7 +936,11 @@
         "mode": "markdown",
         "content": "## External Verification\n\n**Catenalytica Performance Dashboard**\n[Digital Dynamix (1h window)](https://catenalytica.com/dashboard/ftso-performance/overview/0x16C0619b2C427AaEb5931426eB0a898b6E3Cd885?timeWindow=1h&scoreType=primary&providers=Digital+Dynamix&sort=name)\n\n**Flare Systems Explorer**\n[FTSO Price Feeds](https://flare-systems-explorer.flare.network/price-feeds/ftso)\n\n## Known Limitations (Test Platform)\n\n| Limitation | Impact | What we show instead |\n|:---|:---|:---|\n| No direct mainnet access | Anchor may lag by 1-2 epochs | On-chain anchor contract call via Flare RPC |\n| Test provider instance | Not the production submission | Same codebase, same feeds, same calculation |\n| JOULE/USD missing | Only 63/64 feeds active | Bitrue source unresponsive -- documented in logs |\n| Binance spot gaps | 12 feeds not on Binance spot | CoinGecko + Anchor as primary refs |\n\n**What we do:** Every 30s we call getFeedsById() on Flare mainnet, compare against our local provider, and log the deviation. This dashboard reflects that live comparison."
       },
-      "targets": []
+      "targets": [],
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      }
     },
     {
       "id": 42,
@@ -849,9 +985,17 @@
       "targets": [
         {
           "expr": "ftso_provider_last_voting_round",
-          "legendFormat": "Round"
+          "legendFormat": "Round",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
         }
-      ]
+      ],
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      }
     },
     {
       "id": 43,
@@ -958,19 +1102,31 @@
           "expr": "ftso_provider_source_weight{pair=\"$pair\"}",
           "instant": true,
           "format": "table",
-          "refId": "weight"
+          "refId": "weight",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
         },
         {
           "expr": "ftso_provider_source_staleness_ms{pair=\"$pair\"}",
           "instant": true,
           "format": "table",
-          "refId": "staleness"
+          "refId": "staleness",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
         },
         {
           "expr": "ftso_provider_source_raw_price{pair=\"$pair\"}",
           "instant": true,
           "format": "table",
-          "refId": "rawprice"
+          "refId": "rawprice",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
         }
       ],
       "transformations": [
@@ -1005,7 +1161,15 @@
             }
           }
         }
-      ]
+      ],
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      }
     }
-  ]
+  ],
+  "datasource": {
+    "type": "prometheus",
+    "uid": "prometheus"
+  }
 }
