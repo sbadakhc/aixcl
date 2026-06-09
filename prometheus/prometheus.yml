@@ -100,11 +100,11 @@ scrape_configs:
           service: 'open-webui'
 
   # Application services - discovered via file_sd_configs
-  # Apps write their targets to prometheus/app-targets/<app_name>.json
+  # Apps write their targets to prometheus/file_sd/<app_name>.json
   - job_name: 'aixcl-apps'
     file_sd_configs:
       - files:
-          - 'app-targets/*.json'
+          - 'file_sd/*.json'
         refresh_interval: 30s
     relabel_configs:
       - source_labels: [__address__]
