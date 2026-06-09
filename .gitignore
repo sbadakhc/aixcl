@@ -131,7 +131,15 @@ context/
 #   .claude/commands/*.md, .claude/agents/*.md, .claude/settings.json
 .claude/settings.local.json
 
-# Database files
+# Grafana runtime-generated dashboards
+# Apps copy their dashboards here at runtime via _app_wire_grafana()
+# The source dashboards remain in apps/<name>/grafana/dashboards/
+grafana/provisioning/dashboards/apps/
+
+# Prometheus runtime-generated targets
+# Apps write their targets here at runtime via _app_generate_prometheus_targets()
+# The source configurations remain in apps/<name>/app.yaml
+prometheus/file_sd/
 *.db
 *.sqlite
 *.sqlite3
